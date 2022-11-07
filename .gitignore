@@ -3,5 +3,4 @@ target
 .sccache
 .soroban
 node_modules
-squirtle/sq*
 *bundle*
