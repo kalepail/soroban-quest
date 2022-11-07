@@ -467,6 +467,12 @@ yargs(Deno.args)
       describe: 'The index of the quest to play',
       alias: ['i', 'number', 'n', 'quest', 'q'],
     }).demandOption(['index']), runPlay)
+  .command('fund', 'Create and fund an account on the Futurenet', (yargs: any) => yargs
+    .positional('key', {
+      describe: 'The public key of the account to fund',
+      alias: ['addr', 'address', 'acct', 'account']
+    })
+    .demandOption(['key']), runFund)
   .command(['check', 'verify'], 'Check your Quest answer', (yargs: any) => yargs
     .positional('index', {
       describe: 'The index of the quest to check',
@@ -478,12 +484,6 @@ yargs(Deno.args)
     })
     .demandOption(['xdr']), runSubmit)
   // nesho? | allow the user to request new Quest Keypairs
-  .command('fund', 'Create and fund an account on the Futurenet', (yargs: any) => yargs
-    .positional('key', {
-      describe: 'The public key of the account to fund',
-      alias: ['addr', 'address', 'acct', 'account']
-    })
-    .demandOption(['key']), runFund)
   .demandCommand(1)
   .showHelpOnFail(false, 'Pass --help for available options')
   .alias('help', 'h')
