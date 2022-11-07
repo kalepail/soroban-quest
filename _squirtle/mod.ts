@@ -220,6 +220,11 @@ Steps to use:
   // ✅ SOROBAN_SECRET_KEY env variable has been updated`);
 }
 
+const runFund = async (argv: any) => {
+  return fetch(`https://friendbot-futurenet.stellar.org/?addr=${argv.addr}`)
+  .then(handleResponse)
+}
+
 const runCheck = async (argv: any) => {
   if (!argv.index)
     throw '--index argument must be a positive integer'
@@ -469,11 +474,16 @@ yargs(Deno.args)
     }).demandOption(['index']), runCheck)
   .command('submit', 'Submit a signed reward XDR to the Stellar Quest backend', (yargs: any) => yargs
     .positional('xdr', {
-      describe: 'The index of the quest to check',
+      describe: 'The XDR to submit to the Stellar Quest backend',
     })
     .demandOption(['xdr']), runSubmit)
   // nesho? | allow the user to request new Quest Keypairs
-  // fund? | allow the user to fund a keypair on the futurenet
+  .command('fund', 'Create and fund an account on the Futurenet', (yargs: any) => yargs
+    .positional('key', {
+      describe: 'The public key of the account to fund',
+      alias: ['addr', 'address', 'acct', 'account']
+    })
+    .demandOption(['key']), runFund)
   .demandCommand(1)
   .showHelpOnFail(false, 'Pass --help for available options')
   .alias('help', 'h')
