@@ -8,16 +8,12 @@ tasks:
       then
         rm -rf _client _squirtle
       fi
-      cd _squirtle
-      npm run compile
     command: |
-      cd _squirtle
-      npm run bin
-      cd ../_client
+      cd ~/.local/soroban-quest/_client
       clear
       npm run start
   - name: Futurenet
-    init: | 
+    init: |
       docker pull stellar/quickstart:soroban-dev
     command: |
       docker run --rm -it \
@@ -26,13 +22,13 @@ tasks:
       stellar/quickstart:soroban-dev \
       --futurenet \
       --enable-soroban-rpc
-  - name: CLI – Futurenet
+  - name: CLI - Futurenet
     env:
       SOROBAN_RPC_URL: "http://localhost:8000/soroban/rpc"
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Future Network ; October 2022"
     command: |
       clear
-  - name: CLI – Sandbox
+  - name: CLI - Sandbox
     init: |
       cargo clean
       cargo fetch
