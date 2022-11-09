@@ -12,6 +12,7 @@ RUN unzip deno-x86_64-unknown-linux-gnu.zip -d ~/.local/bin
 RUN git clone https://github.com/tyvdh/soroban-quest--pioneer.git ~/.local/_tmp/soroban-quest && \
     mv ~/.local/_tmp/soroban-quest/_client ~/.local && \
     cd ~/.local/_tmp/soroban-quest/_squirtle && \
+    mv bash-hook ~/.local/sq-bash-hook && \
     npm run package && \
     cd ~/.local && \
     rm -rf ~/.local/_tmp
