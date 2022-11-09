@@ -4,3 +4,5 @@ target
 .soroban
 node_modules
 *bundle*
+_squirtle
+_client

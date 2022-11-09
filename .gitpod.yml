@@ -3,13 +3,8 @@ image:
 
 tasks:
   - name: "Albedo Signer"
-    before: |
-      if [[ $ENV -eq prod ]]
-      then
-        rm -rf _client _squirtle
-      fi
     command: |
-      cd ~/.local/soroban-quest/_client
+      cd ~/.local/_client
       clear
       npm run start
   - name: Futurenet
