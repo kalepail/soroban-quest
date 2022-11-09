@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: "Albedo Signer"
-    init: |
+    before: |
       if [[ $ENV -eq prod ]]
       then
         rm -rf _client _squirtle
