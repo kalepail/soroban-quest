@@ -22,6 +22,7 @@ tasks:
       SOROBAN_RPC_URL: "http://localhost:8000/soroban/rpc"
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Future Network ; October 2022"
     command: |
+      source ~/.local/bash-hook
       clear
   - name: CLI - Sandbox
     init: |
