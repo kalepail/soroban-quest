@@ -4,6 +4,10 @@ image:
 tasks:
   - name: "Albedo Signer"
     init: |
+      if [[ $ENV -eq prod ]]
+      then
+        rm -rf _client _squirtle
+      fi
       cd _squirtle
       npm run compile
     command: |
