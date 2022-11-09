@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full:2022-11-04-17-43-13
+FROM gitpod/workspace-full:2022-11-09-13-54-49
 
 RUN mkdir -p ~/.local/bin
 RUN curl -L https://github.com/stellar/soroban-cli/releases/download/v0.1.2/soroban-cli-0.1.2-x86_64-unknown-linux-gnu.tar.gz | tar xz -C ~/.local/bin soroban
