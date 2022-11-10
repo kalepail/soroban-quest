@@ -14,13 +14,9 @@
 ## Welcome
 
 Welcome to our Soroban Quest! We are beyond excited you've joined us. We've
-worked hard to make this a productive, interesting, and most-of-all useful
-learning experience for you!
+worked hard to make this a productive, interesting, and above all fun learning experience for you!
 
-These quests are going to be fun, exciting, and *interesting* to be sure! We're
-so thrilled you're here.
-
-Enjoy!
+So let's have some fun!
 
 ## Feeling Lost?
 
