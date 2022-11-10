@@ -30,7 +30,7 @@ please checkout our [pioneer quest][pioneer]. It covers the basic structure of
 this repository, all the tools you'll need, and the process of getting
 everything working together.
 
-It could probably be an important resource to keep handy during all these live
+It's an important resource to keep handy during all these live
 quests. Some of the most important bits you'll need to know from it:
 
 - Understanding what a "Gitpod workspace" even is, and how we've set it up for
@@ -40,13 +40,13 @@ quests. Some of the most important bits you'll need to know from it:
 - Interacting with a Soroban sandbox, as well as the Futurenet, from within this
   gitpod workspace.
 
-If you feel lost on any of that, you probably could use a refresher. Go ahead,
-[be a pioneer][pioneer] once more. We won't judge!
+If you feel lost on any of that, you could probably use a refresher. Go ahead,
+[be a pioneer][pioneer] once more. We don't judge!
 
-### Join Us on Discord
+### Join us on Discord
 
 We have a thriving, active, and *extremely* helpful Discord community! Join the
-[Stellar Quest discord server][discord], and you'll find so many friendly folks
+[Stellar Quest Discord server][discord], where you'll find so many friendly folks
 who will help get you on your way!
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#ENV=prod/https://github.com/tyvdh/soroban-quest)
