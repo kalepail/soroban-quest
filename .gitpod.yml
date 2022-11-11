@@ -14,7 +14,7 @@ tasks:
       docker run --rm -it \
       --name stellar \
       -p 8000:8000 \
-      stellar/quickstart:soroban-dev \
+      stellar/quickstart:soroban-dev@sha256:e58d83f92a61f43406087f488dd1cba110a92646dca85f14b3a416163609e853 \
       --futurenet \
       --enable-soroban-rpc
   - name: CLI - Futurenet
