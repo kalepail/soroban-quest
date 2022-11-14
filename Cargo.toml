@@ -3,6 +3,7 @@ resolver = "2"
 
 members = [
     "quests/1-hello-world",
+    "quests/2-auth-store",
 ]
 
 [profile.release-with-logs]
