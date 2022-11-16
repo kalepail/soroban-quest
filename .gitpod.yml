@@ -2,11 +2,6 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name: "Albedo Signer"
-    command: |
-      cd ~/.local/_client
-      clear
-      npm run start
   - name: Futurenet
     init: |
       docker pull stellar/quickstart:soroban-dev@sha256:0993d3350148af6ffeab5dc8f0b835236b28dade6dcae77ff8a09317162f768d
@@ -18,6 +13,11 @@ tasks:
       stellar/quickstart:soroban-dev@sha256:0993d3350148af6ffeab5dc8f0b835236b28dade6dcae77ff8a09317162f768d \
       --futurenet \
       --enable-soroban-rpc
+  - name: "Albedo Signer"
+    command: |
+      cd ~/.local/_client
+      clear
+      npm run start
   - name: CLI - Futurenet
     env:
       SOROBAN_RPC_URL: "http://127.0.0.1:8000/soroban/rpc"
