@@ -20,7 +20,7 @@ tasks:
       --enable-soroban-rpc
   - name: CLI - Futurenet
     env:
-      SOROBAN_RPC_URL: "http://localhost:8000/soroban/rpc"
+      SOROBAN_RPC_URL: "http://127.0.0.1:8000/soroban/rpc"
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Future Network ; October 2022"
     command: |
       source ~/.local/bash-hook

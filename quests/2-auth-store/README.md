@@ -43,13 +43,13 @@ Here's a quick hint, if you want to check the state of your RPC endpoint. Run
 this command in your Futurenet terminal:
 
 ```bash
-curl -s https://horizon-futurenet.stellar.org/ | grep ingest_latest_ledger && curl -s http://localhost:8000 | grep ingest_latest_ledger
+curl -s https://horizon-futurenet.stellar.org/ | grep ingest_latest_ledger && curl -s http://127.0.0.1:8000 | grep ingest_latest_ledger
 ```
 
 You should get output that resembles the following:
 
 ```bash
-gitpod /workspace/soroban-quest (main) $ curl -s https://horizon-futurenet.stellar.org/ | grep ingest_latest_ledger && curl -s http://localhost:8000 | grep ingest_latest_ledger
+gitpod /workspace/soroban-quest (main) $ curl -s https://horizon-futurenet.stellar.org/ | grep ingest_latest_ledger && curl -s http://127.0.0.1:8000 | grep ingest_latest_ledger
   "ingest_latest_ledger": 799299,
   "ingest_latest_ledger": 0,
 ```
@@ -57,7 +57,7 @@ gitpod /workspace/soroban-quest (main) $ curl -s https://horizon-futurenet.stell
 The first line represents the latest ledger on the SDF-maintained Futurenet
 nodes, and the second line represents the latest ledger on your Gitpod's
 workspace. If those two numbers are too far apart, you will not be able to
-interact with the Futurenet through your localhost's RPC endpoint.
+interact with the Futurenet through your local RPC endpoint.
 
 In that case, you'll just have to patiently wait while your Futurenet node syncs
 with the rest of the network.
