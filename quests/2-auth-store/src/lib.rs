@@ -23,7 +23,7 @@ impl DataStoreContract {
             }
         };
 
-        // We are ensuring the provided Bytes value length is at least 10 since
+        // We are ensuring the provided Bytes value length is at least 11 since
         // we want users to perform the String to Bytes conversion on their own,
         // without passing simple values like Bytes(7). We also want to
         // highlight some differences between Bytes and symbols (which must be
