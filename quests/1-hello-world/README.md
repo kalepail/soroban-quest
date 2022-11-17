@@ -26,8 +26,8 @@ version of what you need to do to get that awesome SQ badge.
   - [Deploy to Futurenet](#deploy-to-futurenet)
   - [Invoke it on Futurenet](#invoke-it-on-futurenet)
 - [Finish the Quest](#finish-the-quest)
+- [Stuck?](#stuck)
 - [Further Reading](#further-reading)
-- [Still Stuck?](#still-stuck)
 
 ## How to Play
 
@@ -86,13 +86,16 @@ want to play. You get that information by running the following:
 sq play 1 # use whichever quest number you are trying to play
 ```
 
+This command will ask you if you want the account funded, and will take care of
+that for you, if you choose yes.
+
 Save this information, because (trust me) you'll need it later!
 
 ### Fund that Account
 
-We even put together a handy way for you to get your Futurenet Lumens from
-Futurenet Friendbot (you might know his cousin...). `sq` can help you with that
-like so:
+If you chose to fund the account yourself, we have put together a handy way for
+you to get your Futurenet Lumens from Futurenet Friendbot (you might know his
+cousin...). `sq` can help you with that like so:
 
 ```bash
 sq fund <your-quest-keypair-public-key>
