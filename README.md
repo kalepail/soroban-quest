@@ -59,32 +59,23 @@ quests. Some of the most important bits you'll need to know from it:
 If you feel lost on any of that, you could probably use a refresher. Go ahead,
 [be a pioneer][pioneer] once more. We don't judge!
 
-### Join us on Discord
+## Join us on Discord
 
-We have a thriving, active, and *extremely* helpful discord community! Join the
-[Stellar Quest discord server][discord], where you'll find so many friendly
-folks who will help get you on your way! This discord server is an excellent
+We have a thriving, active, and *extremely* helpful Discord community! Join the
+[Stellar Quest Discord server][discord], where you'll find so many friendly
+folks who will help get you on your way! This Discord server is an excellent
 place to ask questions, learn the ropes, find tools, and meet others on the same
 journey as you.
 
-In the [Stellar Developers discord server][dev-discord], you will also find a
+In the [Stellar Developers Discord server][dev-discord], you will also find a
 large, active, and helpful community! We have recently announced a $100M Soroban
 Adoption Fund, which SDF created to support the growth and development of the
 Soroban ecosystem. We'll be sharing more about additional programs on the
-Stellar Dev discord in the not-too-distant future, so make sure to join today to
+Stellar Dev Discord in the not-too-distant future, so make sure to join today to
 be the among the first to hear those announcements. This is yet another way for
-you to **Tinker and Earn** XLM on Soroban! Many of the people who are *creating*
+you to **Tinker and Earn** XLM with Soroban! Many of the people who are *creating*
 the Soroban platform are there, and willing to answer questions, too! Talk about
 "straight from the horse's mouth"!!
-
-**Please Note:** While there are people in the larger Stellar Ecosystem that are
-interested in token speculation, XLM farming, etc. these discord servers are not
-designed for those conversations. The *Stellar Quest* discord server is an
-excellent place to begin or advance your blockchain education. The *Stellar
-Developers* discord server is a great place to further your education, meet
-other developers, and build projects on the Stellar network.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][gitpod]
 
 [gitpod]: https://gitpod.io/#ENV=prod/https://github.com/tyvdh/soroban-quest
 [pioneer]: https://github.com/tyvdh/soroban-quest--pioneer
