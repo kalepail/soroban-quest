@@ -24,6 +24,7 @@ tasks:
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Future Network ; October 2022"
     command: |
       source ~/.local/bash-hook
+      source ~/.local/bash-rpc-prompt
       clear
   - name: CLI - Sandbox
     init: |
