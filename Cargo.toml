@@ -4,6 +4,7 @@ resolver = "2"
 members = [
     "quests/1-hello-world",
     "quests/2-auth-store",
+    "quests/3-reverse-engineer"
 ]
 
 [profile.release-with-logs]
