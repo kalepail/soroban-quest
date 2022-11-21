@@ -63,17 +63,18 @@ impl DataStoreContract {
     /// invokations of this function. If there is no data associated, return
     /// Bytes of length 0.
     pub fn get_self(env: Env) -> Result<Bytes, ContractError> {
-        let key = match env.invoker() {
-            Address::Account(account_id) => account_id,
-            Address::Contract(_) => {
-                panic_with_error!(&env, ContractError::CrossContractCallProhibited)
-            }
-        };
-        Ok(env
-            .data()
-            .get(key)
-            .unwrap_or_else(|| Ok(bytes!(&env)))
-            .unwrap())
+        unimplemented!("not implemented")
+        //        let key = match env.invoker() {
+        //            Address::Account(account_id) => account_id,
+        //            Address::Contract(_) => {
+        //                panic_with_error!(&env, ContractError::CrossContractCallProhibited)
+        //            }
+        //        };
+        //        Ok(env
+        //            .data()
+        //            .get(key)
+        //            .unwrap_or_else(|| Ok(bytes!(&env)))
+        //            .unwrap())
     }
 }
 

@@ -77,9 +77,7 @@ fn test_store_value_too_short() {
     // For our `u1` account, we attempt to store `Bytes(0, 7)` using the
     // contract's `put()` function. We stop there, since we're just expecting
     // the contract to panic with the argument that's too short.
-    client
-        .with_source_account(&u1)
-        .put(&bytes![&env, 0x007]);
+    client.with_source_account(&u1).put(&bytes![&env, 0x007]);
 }
 
 /// For the next few tests, we are going to test our DataStore contract's
@@ -142,7 +140,7 @@ fn test_contract_store() {
 /// as another smart contract. This is expected to fail since that method is
 /// only available to an `Account`, and not a `Contract`.
 #[test]
-#[should_panic(expected = "Status(ContractError(1))")] // We want this test to panic since it uses a forbidden function.
+#[should_panic(expected = "not implemented")] // We want this test to panic since it uses a forbidden function.
 fn test_contract_get_self() {
     // We create an environment, and register the DataStore contract in it.
     let env = Env::default();
