@@ -31,8 +31,8 @@ Check out the schedule below to see more details and specifics.
 | 02    | Auth Storage     | November 14, 2:00pm |
 | 03    | Reverse Engineer | November 18, 2:00am |
 | 04    | Cross Contract   | November 21, 2:00pm |
-| 05    | Custom Types     | November 28, 2:00am |
-| 06    | Asset Interop    | December 2, 2:00pm  |
+| 05    | Custom Types     | November 28, 2:00pm |
+| 06    | Asset Interop    | December 2, 2:00am  |
 
 ## Feeling Lost?
 
