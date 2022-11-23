@@ -54,7 +54,8 @@ impl DataStoreContract {
     }
 
     // !!!
-    // TODO Let's make sure someone uncomments this 👇 function before Q2 goes live or everyone will Nesho it
+    // TODO Make sure someone implements and uncomments this 👇 function before Q2 goes live or everyone will Nesho it
+    // NOTE When you implement the function you'll also need to update the test for `get_self`
     // !!!
 
     /// The `get_self()` function works similarly to `get()`, except `owner` is
