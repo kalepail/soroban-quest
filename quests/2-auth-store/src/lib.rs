@@ -55,7 +55,7 @@ impl DataStoreContract {
 
     // !!!
     // TODO Make sure someone implements and uncomments this 👇 function before Q2 goes live or everyone will Nesho it
-    // NOTE When you implement the function you'll also need to update the test for `get_self`
+    // NOTE When you implement this function you'll also want to remove the `#[ignore]` flag for its test
     // !!!
 
     /// The `get_self()` function works similarly to `get()`, except `owner` is
@@ -63,19 +63,19 @@ impl DataStoreContract {
     /// a call to `env.invoker()`. Again we don't allow cross-contract
     /// invokations of this function. If there is no data associated, return
     /// Bytes of length 0.
-    pub fn get_self(env: Env) -> Result<Bytes, ContractError> {
+    pub fn get_self(/* env: Env */) -> Result<Bytes, ContractError> {
         unimplemented!("not implemented")
-        //        let key = match env.invoker() {
-        //            Address::Account(account_id) => account_id,
-        //            Address::Contract(_) => {
-        //                panic_with_error!(&env, ContractError::CrossContractCallProhibited)
-        //            }
-        //        };
-        //        Ok(env
-        //            .data()
-        //            .get(key)
-        //            .unwrap_or_else(|| Ok(bytes!(&env)))
-        //            .unwrap())
+        // let key = match env.invoker() {
+        //     Address::Account(account_id) => account_id,
+        //     Address::Contract(_) => {
+        //         panic_with_error!(&env, ContractError::CrossContractCallProhibited)
+        //     }
+        // };
+        // Ok(env
+        //     .data()
+        //     .get(key)
+        //     .unwrap_or_else(|| Ok(bytes!(&env)))
+        //     .unwrap())
     }
 }
 

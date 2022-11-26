@@ -141,7 +141,7 @@ fn test_contract_store() {
 /// only available to an `Account`, and not a `Contract`.
 #[test]
 #[ignore]
-#[should_panic(expected = "not implemented")] // We want this test to panic since it hasn't been implemented
+#[should_panic(expected = "Status(ContractError(1))")] // We want this test to panic since it uses a forbidden function.// #[should_panic(expected = "not implemented")] // We want this test to panic since it hasn't been implemented
 fn test_contract_get_self() {
     // We create an environment, and register the DataStore contract in it.
     let env = Env::default();
