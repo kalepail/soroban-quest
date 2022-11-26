@@ -140,7 +140,8 @@ fn test_contract_store() {
 /// as another smart contract. This is expected to fail since that method is
 /// only available to an `Account`, and not a `Contract`.
 #[test]
-#[should_panic(expected = "not implemented")] // We want this test to panic since it uses a forbidden function.
+#[ignore]
+#[should_panic(expected = "not implemented")] // We want this test to panic since it hasn't been implemented
 fn test_contract_get_self() {
     // We create an environment, and register the DataStore contract in it.
     let env = Env::default();
