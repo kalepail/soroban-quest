@@ -275,7 +275,7 @@ Invoke the `c_card` function using something like:
 ```bash
 soroban invoke \
     --id <contract-id> \
-    --fn c_foo \
+    --fn c_card \
     --arg '{"u32":<a-u32-integer>}'
 ```
 
