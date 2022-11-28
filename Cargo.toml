@@ -5,7 +5,8 @@ members = [
     "quests/1-hello-world",
     "quests/2-auth-store",
     "quests/3-reverse-engineer",
-    "quests/4-cross-contract"
+    "quests/4-cross-contract",
+    "quests/5-custom-types"
 ]
 
 [profile.release-with-logs]

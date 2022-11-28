@@ -1,0 +1,15 @@
+[package]
+name = "soroban-custom-types-contract"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = "0.2.1"
+
+[dev_dependencies]
+soroban-sdk = { version = "0.2.1", features = ["testutils"] }
