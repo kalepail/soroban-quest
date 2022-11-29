@@ -12,7 +12,7 @@ use types::*;
 pub struct TypesContract;
 
 /// This `TypesContract` contract is really only here to accept a custom type as
-/// a paremeter, and we will consider it a successful invocation as long as you
+/// a parameter, and we will consider it a successful invocation as long as you
 /// can submit a valid `--arg` for your custom type.
 #[contractimpl]
 impl TypesContract {
