@@ -4,6 +4,7 @@
   "workbench.editorAssociations": {
     "*.md": "vscode.markdown.preview.editor"
   },
+  "markdown.preview.doubleClickToSwitchToEditor": false,
   "rust-analyzer.cargo.useRustcWrapperForBuildScripts": false,
   "deno.enable": true,
   "deno.unstable": true
