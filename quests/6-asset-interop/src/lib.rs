@@ -45,6 +45,12 @@ pub enum DataKey {
     Latest,  // u64
 }
 
+/// You know what's a pain? Re-declaring or re-calculating the same value over
+/// and over again. We're going to use the number of seconds in a year more than
+/// once in this contract, so let's use a `const` to declare it once and get it
+/// out of the way.
+const SECONDS_IN_YEAR: u64 = 365 * 24 * 60 * 60; // = 31,536,000 seconds (fyi)
+
 pub struct AllowanceContract;
 
 /// Seeing a `trait` may feel familiar. We used one in Quest 4, as well. When
@@ -101,6 +107,12 @@ impl AllowanceTrait for AllowanceContract {
         // You can't have a withdraw every 0 seconds. Obviously. Also, you can't
         // divide by 0. So say the calculators, at least.
         if step == 0 {
+            return Err(Error::InvalidArguments);
+        }
+
+        // A withdrawal should never be `0`. I mean, really. At that point, why
+        // even go through the trouble of setting this up?
+        if (&amount * step) / SECONDS_IN_YEAR == 0 {
             return Err(Error::InvalidArguments);
         }
 
@@ -164,9 +176,9 @@ impl AllowanceTrait for AllowanceContract {
         // We do some really quick math to figure out a couple things:
         // - `iterations` - the number of withdraws that can be made in a year
         // - `amount` - the withdrawn for every iteration
-        let seconds_in_year: u64 = 365 * 24 * 60 * 60;
+
         let step: u64 = e.data().get(DataKey::Step).unwrap().unwrap();
-        let iterations = seconds_in_year / step;
+        let iterations = SECONDS_IN_YEAR / step;
         let amount: BigInt = e.data().get(DataKey::Amount).unwrap().unwrap();
         let withdraw_amount = amount / iterations;
 

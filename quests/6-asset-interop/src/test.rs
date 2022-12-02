@@ -91,14 +91,12 @@ fn test_valid_sequence() {
     // We invoke the `init` function of the AllowanceContract, providing the
     // starting arguments. These values result in a weekly allowance of
     // 9,615,384 stroops (== 0.9615384 units). Why, you big spender!
-    client
-        .with_source_account(&u1)
-        .init(
-            &u2,                        // our `Child` account
-            &id,                     // our token contract id
-            &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
-            &(7 * 24 * 60 * 60)          // 1 withdraw per week (7 days * 24 hours * 60 minutes * 60 seconds)
-        );
+    client.with_source_account(&u1).init(
+        &u2,                       // our `Child` account
+        &id,                       // our token contract id
+        &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
+        &(7 * 24 * 60 * 60), // 1 withdraw per week (7 days * 24 hours * 60 minutes * 60 seconds)
+    );
 
     // We set new ledger state to simulate time passing. Here, we have increased
     // the timestamp by one second.
@@ -167,7 +165,6 @@ fn test_invalid_sequence() {
         network_passphrase: Default::default(),
         base_reserve: 10,
     });
-
 
     let contract_id = env.register_contract(None, AllowanceContract);
     let client = AllowanceContractClient::new(&env, &contract_id);
@@ -254,7 +251,7 @@ fn test_invalid_sequence() {
     client.withdraw();
 }
 
-/// In our final test function, `test_invalid_init()`, we test to make sure that
+/// In our next test function, `test_invalid_init()`, we test to make sure that
 /// invoking the AllowanceContract `init` function with invalid arguments will
 /// fail as expected. Specifically, we are passing `0` for the `step` value.
 #[test]
@@ -322,14 +319,92 @@ fn test_invalid_init() {
     // allowance-dripping faucet into a rusted old faucet that has been welded
     // shut. Also, dividing by zero is impossible. So, that's an important
     // consideration, too.
-    client
-        .with_source_account(&u1)
-        .init(
-            &u2,                        // our `Child` account
-            &id,                     // our token contract id
-            &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
-            &0                           // 0 withdraw per second (why even bother setting this up then Hehe)
-        );
+    client.with_source_account(&u1).init(
+        &u2,                       // our `Child` account
+        &id,                       // our token contract id
+        &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
+        &0,                        // 0 withdraw per second (why would you even do this?)
+    );
+
+    // Again, there's no need for an assertion here, since this invocation
+    // should fail and respond with `Status(ContractError(6))`.
+}
+
+/// In our final test function, `test_invalid_init_withdrawal()`, we test to make sure that
+/// invoking the AllowanceContract `init` function with invalid arguments will
+/// fail as expected. Specifically, we are passing the arguments so that over the
+/// course of the year, the child can withdraw a portion of the total pot amount of
+/// 1 stroop every second, which is of course impossible.
+#[test]
+#[should_panic(expected = "Status(ContractError(6))")] // We want this test to panic since we are giving an unusable argument.
+fn test_invalid_init_withdrawal() {
+    // Almost everything in this test is identical to the first one. We'll drop
+    // a comment to let you know when things are getting interesting again.
+    let env = Env::default();
+    env.ledger().set(LedgerInfo {
+        timestamp: 1669726145,
+        protocol_version: 1,
+        sequence_number: 10,
+        network_passphrase: Default::default(),
+        base_reserve: 10,
+    });
+
+    let u1 = env.accounts().generate();
+    let u2 = env.accounts().generate();
+
+    let contract_id = env.register_contract(None, AllowanceContract);
+    let client = AllowanceContractClient::new(&env, &contract_id);
+
+    let id = env.register_contract_token(&BytesN::from_array(
+        &env,
+        &[
+            78, 52, 121, 202, 209, 66, 106, 25, 193, 181, 10, 91, 46, 213, 58, 244, 217, 115, 23,
+            232, 144, 71, 210, 113, 57, 46, 203, 166, 210, 20, 155, 105,
+        ],
+    ));
+
+    let token = token::Client::new(&env, &id);
+    token.init(
+        &Identifier::Account(u1.clone()),
+        &token::TokenMetadata {
+            name: "USD coin".into_val(&env),
+            symbol: "USDC".into_val(&env),
+            decimals: 7,
+        },
+    );
+
+    token.with_source_account(&u1).mint(
+        &Signature::Invoker,
+        &BigInt::zero(&env),
+        &Identifier::Account(u1.clone()),
+        &BigInt::from_i32(&env, 1000000000),
+    );
+
+    token.with_source_account(&u1).approve(
+        &Signature::Invoker,
+        &BigInt::zero(&env),
+        &Identifier::Contract(contract_id.clone()),
+        &BigInt::from_i32(&env, 500000000),
+    );
+
+    assert_eq!(
+        token.allowance(
+            &Identifier::Account(u1.clone()),
+            &Identifier::Contract(contract_id),
+        ),
+        500000000
+    );
+
+    // Ok, stop here! This time, when invoking `init`, we give a `1` for the
+    // `amount` field and a `1` for the `step` field. If you've followed along
+    // with the math so far, that comes out to 3.1709792e-15 **stroops** per
+    // withdraw. That's even more precision than Microsoft Excel can handle!
+    client.with_source_account(&u1).init(
+        &u2,               // our `Child` account
+        &id,               // our token contract id
+        &bigint!(&env, 1), // 1 stroops == 0.0000001 units allowance for the year
+        &1,                // 1 withdraw per second
+    );
 
     // Again, there's no need for an assertion here, since this invocation
     // should fail and respond with `Status(ContractError(6))`.

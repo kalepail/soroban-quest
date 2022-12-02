@@ -26,8 +26,8 @@ version of what you need to do to get that awesome SQ badge.
   - [Deploy to Futurenet](#deploy-to-futurenet)
   - [Invoke it on Futurenet](#invoke-it-on-futurenet)
 - [Finish the Quest](#finish-the-quest)
-- [Stuck?](#stuck)
 - [Further Reading](#further-reading)
+- [Still Stuck?](#still-stuck)
 
 ## How to Play
 
@@ -54,7 +54,7 @@ Otherwise, you should run:
 sq login
 ```
 
-to sign in with your Discord account. You'll then be prompted to complete KYC
+to sign in with your Discord acccount. You'll then be prompted to complete KYC
 or submit tax information, if either are required of you.
 
 **Note:** If you haven't completed the KYC flow and tax submission on the
@@ -75,7 +75,7 @@ You can also do this manually, if you're a `git` veteran. Find the specifics
 over in our [Pioneer Quest][pq-new-quests].
 
 One that's complete you'll see the new quests delivered to your
-`/workspace/<the-workspace-name>/quests` directory.
+`/workspace/<the-workspace-name>/quests/` directory.
 
 ### Retrieve your Quest Account
 
@@ -83,22 +83,19 @@ Before you can play, you must retrieve the `Quest Keypair` for the quest you
 want to play. You get that information by running the following:
 
 ```bash
-sq play 1 # use whichever quest number you are trying to play
+sq play -i 1 # use whichever quest number you are trying to play
 ```
-
-This command will ask you if you want the account funded, and will take care of
-that for you, if you choose yes.
 
 Save this information, because (trust me) you'll need it later!
 
 ### Fund that Account
 
-If you chose to fund the account yourself, we have put together a handy way for
-you to get your Futurenet Lumens from Futurenet Friendbot (you might know his
-cousin...). `sq` can help you with that like so:
+We even put together a handy way for you to get your Futurenet Lumens from
+Futurenet Friendbot (you might know his cousin...). `sq` can help you with that
+like so:
 
 ```bash
-sq fund <your-quest-keypair-public-key>
+sq fund --key GDGYB5FZUKAVPYGCLJTCYYOJPEHHVOCZS7I6SBWF233OQSIROZ7JXLGO
 ```
 
 ### Quest Your Heart Out
@@ -106,16 +103,16 @@ sq fund <your-quest-keypair-public-key>
 Now you're ready to move on to the actual quest part of this! Please skip ahead
 to [this section](#the-task-at-hand) to begin the fun part!
 
-When you think you've finished all that's required, come back here and check
+When you think you've finished all that is required, come back here and check
 your work!
 
 ### Check your Quest Answer
 
-You've done the hard work, and you're ready to see if it'ss paid off! Run the
+You've done the hard work, and you're ready to see if it has paid off! Run the
 following command to verify your work:
 
 ```bash
-sq check 1 # use whichever quest number you are trying to verify
+sq check -i 1 # use whichever quest number you are trying to verify
 ```
 
 If you still haven't completed KYC and/or tax submission, you'll be reminded one
@@ -134,11 +131,11 @@ and thus allowing you to claim your badge and any prize XLM you may have earned.
 
 If you choose "Raw XDR," the transaction will be output to the terminal window,
 and you will need to sign it using Stellar Laboratory (or your preferred
-method). Then you must submit the signed transaction XDR using the `sq submit` command.
+method). Then you must submit the signed transaction XDR using the `sq CLI`.
 That will look something like this:
 
 ```bash
-sq submit --xdr AAAAAgAAAADQTypL...fZDVsq3ibUcAg=
+sq submit --xdr AAAAAgAAAADQTypLJCls2UK4wzQpHyTOdkEBKb78PvEFf7/UqD0P4gAPQkAACutwAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAdTdGVsbGFyAAAAAAEAAAAMUXVlc3QgUnVsZXMhAAAAAAAAAAGoPQ/iAAAAQGsvY+U2M6kGvsbJ+82A8lAQbZG/upocKynAFvADJETNUSbzMtG51KyQdetujsswz9rDDnjPosfZDVsq3ibUcAg=
 ```
 
 Then you can pat yourself on the back and bask in the glow of your amazing new
@@ -156,7 +153,7 @@ Here's what you need to know to complete this quest.
 If you open up the [`lib.rs` file](src/lib.rs), you'll be able to see some
 helpful comments that briefly describe what each portion of the code is doing.
 
-*This contract accepts an argument and responds with a greeting containing the
+*This contract accepts an argument and responds with a greeting containing that
 argument that was supplied.*
 
 A more in-depth dissection of this example smart contract can be found in our
@@ -164,14 +161,32 @@ A more in-depth dissection of this example smart contract can be found in our
 
 ### Build the Contract
 
-We can now move on to actually *building* our contract! I know you didn't think you
+We can now move on to actually *build* our contract! I know you didn't think you
 would make it this far. Give yourself a pat on the back!
 
 *The build process compiles our Rust code that is purpose-built for the
-WebAssembly environment that Soroban will run it in.*
+WebAssembly environment that Soroban will provide for it.*
 
 If you need some instructions to help you along with this step, you can check
 out the [build tutorial][docs-build] in the Soroban documentation.
+
+Here's the short story version of what you'll need to build the contract. Run
+these commands from within your Futurenet terminal:
+
+```bash
+# change into the quest directory
+cd quests/1-hello-world
+# build the contract
+cargo build \
+    --target wasm32-unknown-unknown \
+    --release
+```
+
+> *Note*: We used to ship a `Makefile` with this repository which could run this
+> build command for each quest. This introduced certain bugs with unfinished
+> quests, and presented users with errors related to irrelevant quests. We no
+> longer ship that `Makefile`, and encourage users to manually build each
+> contract.
 
 ### Run a Test
 
@@ -184,16 +199,33 @@ the contract gives the expected response.*
 Once you've got an understanding of what's happening in the test scenario, go
 ahead and run the test, ensuring that our contract is behaving properly.
 
-Just like the file before, the [Pioneer Quest][pq-test] contains a much more
-elaborate explanation of this file, and what is happening along each step of the way.
+Just like before file, the [Pioneer Quest][pq-test] contains a much more
+elaborate explanation of this file, and what is happening along each step of the
+way
+
+To actually run the test in your quest Gitpod workspace, run these commands from
+within your Futurenet terminal:
+
+```bash
+# change into the quest directory (if you're not there already)
+cd quests/1-hello-world
+# run the tests in that directory
+cargo test
+```
+
+> *Note*: We used to ship a `Makefile` with this repository which could run this
+> test command for each quest. This introduced certain bugs with unfinished
+> quests, and presented users with errors related to irrelevant quests. We no
+> longer ship that `Makefile`, and encourage users to manually test each
+> contract.
 
 ### Deploy to Futurenet
 
 The Stellar Futurenet is a safe playground where your contract code can live and
 work while it is still in development and (potentially) unstable.
 
-*Deploying the contract will upload the built binary file to the Futurenet,
-making it readily available for invocation in Futurenet's Soroban
+*Deploying the contract will upload the build binary file to the Futurenet,
+making it readily available for invocation and use in the network's Soroban
 environment.*
 
 You can find some guidance on deploying your contract to the Futurenet in the
@@ -219,12 +251,6 @@ and try to claim your prize!
 
 You can find those [instructions here](#check-your-quest-answer).
 
-## Stuck?
-
-If you're hitting a brick wall, and you're not sure what your next move is,
-check out [this section](../../README.md#feeling-lost) in our main README. It's
-got a couple of suggestions for where you might go from here.
-
 ## Further Reading
 
 Now that you've completed your quest, you might have your interest piqued, and
@@ -242,7 +268,12 @@ resources that might be of interest to you:
 - You can learn more about the [contract lifecycle][contract-lifecycle] in the
   "Learn" section of the Soroban documentation. There are tons of great articles
   here, and you should read through as many of them as you can!
-- Not done learning and earning? Don't want to wait for the next Live Quest? Check out the [Sorobanathon][sorobanathon].
+
+## Still Stuck?
+
+If you're hitting a brick wall, and you're not sure what your next move is,
+check out [this section](../../README.md#feeling-lost) in our main README. It's
+got a couple of suggestions for where you might go from here.
 
 [pq-lib]: https://github.com/tyvdh/soroban-quest--pioneer/blob/main/quests/0-hello-world/src/lib.rs
 [pq-test]: https://github.com/tyvdh/soroban-quest--pioneer/blob/main/quests/0-hello-world/src/test.rs
@@ -254,4 +285,3 @@ resources that might be of interest to you:
 [examples]: https://soroban.stellar.org/docs/category/examples
 [contract-lifecycle]: https://soroban.stellar.org/docs/learn/contract-lifecycle
 [sq-site]: https://quest.stellar.org/
-[sorobanathon]: https://github.com/stellar/sorobanathon
