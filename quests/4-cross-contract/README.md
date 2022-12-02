@@ -18,7 +18,6 @@ the `get` function from your `DataStore` contract.**
 - [The Task at Hand](#the-task-at-hand)
   - [Making an On-Chain Oracle](#making-an-on-chain-oracle)
   - [Importing Contracts](#importing-contracts)
-    - [Caveat on Contract Compilation Order](#caveat-on-contract-compilation-order)
   - [Using a Contract Client](#using-a-contract-client)
   - [Passing Arguments to Soroban CLI](#passing-arguments-to-soroban-cli)
 - [Further Reading](#further-reading)
@@ -91,19 +90,23 @@ mod contract_a {
 to think about whether or not you want to optimize your build process. You can
 read more about [Optimizing Builds][optimizing] in the Soroban docs.
 
-#### Caveat on Contract Compilation Order <!--omit in toc -->
+#### Caveat on Contract Compilation Order <!-- omit in toc -->
 
-If you are using our `Makefile` to compile your contracts, and you run into an
-error when you first run `make build` for this quest, have no fear! This is
-expected behavior when compiling a contract that imports another contract which
-may not actually exist yet.
+Previously, we often used a Makefile to automate some of the contract builds in
+this quest series. That could often result in errors being thrown at build time
+for contracts which were irrelevant to what a user was trying to accomplish.
 
-A second run of `make build` should clear it right up for you.
+To ease the completion of this quest, and minimize confusion, we've pre-compiled
+and included the exact same contract from quest 2 inside this directory.
+
+In the event you are writing your own cross-contract functionality, it's
+important that a compiled file already exist when you use the `contractimport`
+macro. Otherwise, your build will fail (and spectacularly, at that).
 
 ### Using a Contract Client
 
-Once `contract_a` has been imported into `contract_b`, utilizing a cross-contract call is
-quite simple. The process looks like this:
+Once `contract_a` has been imported into `contract_b`, utilizing a
+cross-contract call is quite simple. The process looks like this:
 
 - `contract_b` creates a client it will use to invoke functions in `contract_a`
 - `contract_b` makes an invocation using that client, and supplying any
