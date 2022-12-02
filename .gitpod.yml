@@ -30,8 +30,8 @@ tasks:
     init: |
       cargo clean
       cargo fetch
-      cargo build --target wasm32-unknown-unknown --release -p soroban-hello-world-contract
-      cargo test -p soroban-hello-world-contract
+      cargo build --package soroban-hello-world-contract --target wasm32-unknown-unknown --release
+      cargo test --package soroban-hello-world-contract
     command: |
       gp open README.md
       clear
