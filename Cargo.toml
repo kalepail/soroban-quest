@@ -10,10 +10,6 @@ members = [
     "quests/6-asset-interop"
 ]
 
-[profile.release-with-logs]
-inherits = "release"
-debug-assertions = true
-
 [profile.release]
 opt-level = "z"
 overflow-checks = true
