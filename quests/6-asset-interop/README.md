@@ -204,9 +204,9 @@ remember how to format those arguments, don't you? What!? You don't?! Ok, ok,
 ok. It's gonna be fine. Check back to [Quest 4](../4-cross-contract/README.md)
 and [Quest 5](../5-custom-types/README.md) for a recap.
 
-<sup><sub><sup><sub><sup><sub>
-or poke around in here some more
-</sup></sub></sup></sub></sup></sub>
+<sup><sub><sup><sub>
+or maybe explore the story for a clue
+</sup></sub></sup></sub>
 
 ### Back to Your Quest
 
