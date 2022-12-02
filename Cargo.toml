@@ -6,7 +6,8 @@ members = [
     "quests/2-auth-store",
     "quests/3-reverse-engineer",
     "quests/4-cross-contract",
-    "quests/5-custom-types"
+    # "quests/5-custom-types",
+    "quests/6-asset-interop"
 ]
 
 [profile.release-with-logs]

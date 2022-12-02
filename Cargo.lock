@@ -823,6 +823,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "soroban-asset-interop-contract"
+version = "0.0.0"
+dependencies = [
+ "soroban-auth",
+ "soroban-sdk",
+]
+
+[[package]]
+name = "soroban-auth"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9218b5b9e66c664000e87750ad8199cd7e94b37afb592b079183cc9619aaba9e"
+dependencies = [
+ "ed25519-dalek",
+ "rand 0.7.3",
+ "soroban-sdk",
+]
+
+[[package]]
 name = "soroban-auth-store-contract"
 version = "0.0.0"
 dependencies = [
