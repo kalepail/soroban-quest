@@ -15,7 +15,6 @@ RUN git clone https://github.com/tyvdh/soroban-quest--pioneer.git ~/.local/_tmp/
     mv ~/.local/_tmp/soroban-quest/_client ~/.local && \
     cd ~/.local/_tmp/soroban-quest/_squirtle && \
     mv bash-hook ~/.local && \
-    mv bash-rpc-prompt ~/.local && \
     npm run package && \
     cd ~/.local && \
     rm -rf ~/.local/_tmp
