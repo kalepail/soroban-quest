@@ -7,9 +7,7 @@
 /// and some invocations in our contract. It's a really powerful SDK to get
 /// familiar with. https://soroban.stellar.org/docs/sdks/rust-auth
 use soroban_auth::{Identifier, Signature};
-use soroban_sdk::{
-    contracterror, contractimpl, contracttype, AccountId, Address, BigInt, BytesN, Env,
-};
+use soroban_sdk::{contracterror, contractimpl, contracttype, AccountId, Address, BytesN, Env};
 
 /// The `contractimport` macro will bring in the contents of the built-in
 /// soroban token contract and generate a module we can use with it.
@@ -40,7 +38,7 @@ pub enum DataKey {
     Parent,  // AccountId
     Child,   // AccountId
     TokenId, // BytesN<32>
-    Amount,  // BigInt
+    Amount,  // i128
     Step,    // u64
     Latest,  // u64
 }
@@ -67,7 +65,7 @@ pub trait AllowanceTrait {
         e: Env,
         child: AccountId,     // the child account receiving the allowance
         token_id: BytesN<32>, // the id of the token being transferred as an allowance
-        amount: BigInt,       // the total allowance amount given for the year
+        amount: i128,         // the total allowance amount given for the year
         step: u64,            // how frequently (in seconds) a withdrawal can be made
     ) -> Result<(), Error>;
 
@@ -93,7 +91,7 @@ impl AllowanceTrait for AllowanceContract {
         e: Env,
         child: AccountId,
         token_id: BytesN<32>,
-        amount: BigInt,
+        amount: i128,
         step: u64,
     ) -> Result<(), Error> {
         // When running `init`, we want to make sure the function hasn't already
@@ -112,7 +110,7 @@ impl AllowanceTrait for AllowanceContract {
 
         // A withdrawal should never be `0`. I mean, really. At that point, why
         // even go through the trouble of setting this up?
-        if (&amount * step) / SECONDS_IN_YEAR == 0 {
+        if (amount * step as i128) / SECONDS_IN_YEAR as i128 == 0 {
             return Err(Error::InvalidArguments);
         }
 
@@ -179,8 +177,8 @@ impl AllowanceTrait for AllowanceContract {
 
         let step: u64 = e.data().get(DataKey::Step).unwrap().unwrap();
         let iterations = SECONDS_IN_YEAR / step;
-        let amount: BigInt = e.data().get(DataKey::Amount).unwrap().unwrap();
-        let withdraw_amount = amount / iterations;
+        let amount: i128 = e.data().get(DataKey::Amount).unwrap().unwrap();
+        let withdraw_amount = amount / iterations as i128;
 
         // Some more quick math to make sure the `Latest` withdraw occurred *at
         // least* `step` seconds ago. We don't want them draining the piggy bank
@@ -198,7 +196,7 @@ impl AllowanceTrait for AllowanceContract {
         // possibilities! They're (and I mean this quite literally) endless!
         client.xfer_from(
             &Signature::Invoker,
-            &BigInt::zero(&e),
+            &0,
             &Identifier::Account(e.data().get(DataKey::Parent).unwrap().unwrap()),
             &Identifier::Account(child),
             &withdraw_amount,

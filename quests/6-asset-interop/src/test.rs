@@ -3,7 +3,6 @@
 use super::*;
 
 use soroban_sdk::{
-    bigint,
     testutils::{Accounts, Ledger, LedgerInfo},
     BytesN, Env, IntoVal,
 };
@@ -63,9 +62,9 @@ fn test_valid_sequence() {
     // is equal to 100 units of the asset).
     token.with_source_account(&u1).mint(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Account(u1.clone()),
-        &BigInt::from_i32(&env, 1000000000),
+        &1000000000,
     );
 
     // We invoke the token contract's `approve` function as the `u1` account,
@@ -73,9 +72,9 @@ fn test_valid_sequence() {
     // We are giving the contract a 500,000,000 Stroop (== 50 units) allowance.
     token.with_source_account(&u1).approve(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Contract(contract_id.clone()),
-        &BigInt::from_i32(&env, 500000000),
+        &500000000,
     );
 
     // We invoke the token contract's `allowance` function to ensure everything
@@ -92,9 +91,9 @@ fn test_valid_sequence() {
     // starting arguments. These values result in a weekly allowance of
     // 9,615,384 stroops (== 0.9615384 units). Why, you big spender!
     client.with_source_account(&u1).init(
-        &u2,                       // our `Child` account
-        &id,                       // our token contract id
-        &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
+        &u2,                 // our `Child` account
+        &id,                 // our token contract id
+        &500000000,          // 500000000 stroops == 50 units allowance for the year
         &(7 * 24 * 60 * 60), // 1 withdraw per week (7 days * 24 hours * 60 minutes * 60 seconds)
     );
 
@@ -189,16 +188,16 @@ fn test_invalid_sequence() {
 
     token.with_source_account(&u1).mint(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Account(u1.clone()),
-        &BigInt::from_i32(&env, 1000000000),
+        &1000000000,
     );
 
     token.with_source_account(&u1).approve(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Contract(contract_id.clone()),
-        &BigInt::from_i32(&env, 500000000),
+        &500000000,
     );
 
     assert_eq!(
@@ -211,7 +210,7 @@ fn test_invalid_sequence() {
 
     client
         .with_source_account(&u1)
-        .init(&u2, &id, &bigint!(&env, 500000000), &(7 * 24 * 60 * 60));
+        .init(&u2, &id, &500000000, &(7 * 24 * 60 * 60));
 
     env.ledger().set(LedgerInfo {
         timestamp: 1669726146,
@@ -294,16 +293,16 @@ fn test_invalid_init() {
 
     token.with_source_account(&u1).mint(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Account(u1.clone()),
-        &BigInt::from_i32(&env, 1000000000),
+        &1000000000,
     );
 
     token.with_source_account(&u1).approve(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Contract(contract_id.clone()),
-        &BigInt::from_i32(&env, 500000000),
+        &500000000,
     );
 
     assert_eq!(
@@ -320,10 +319,10 @@ fn test_invalid_init() {
     // shut. Also, dividing by zero is impossible. So, that's an important
     // consideration, too.
     client.with_source_account(&u1).init(
-        &u2,                       // our `Child` account
-        &id,                       // our token contract id
-        &bigint!(&env, 500000000), // 500000000 stroops == 50 units allowance for the year
-        &0,                        // 0 withdraw per second (why would you even do this?)
+        &u2,        // our `Child` account
+        &id,        // our token contract id
+        &500000000, // 500000000 stroops == 50 units allowance for the year
+        &0,         // 0 withdraw per second (why would you even do this?)
     );
 
     // Again, there's no need for an assertion here, since this invocation
@@ -375,16 +374,16 @@ fn test_invalid_init_withdrawal() {
 
     token.with_source_account(&u1).mint(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Account(u1.clone()),
-        &BigInt::from_i32(&env, 1000000000),
+        &1000000000,
     );
 
     token.with_source_account(&u1).approve(
         &Signature::Invoker,
-        &BigInt::zero(&env),
+        &0,
         &Identifier::Contract(contract_id.clone()),
-        &BigInt::from_i32(&env, 500000000),
+        &500000000,
     );
 
     assert_eq!(
@@ -400,10 +399,10 @@ fn test_invalid_init_withdrawal() {
     // with the math so far, that comes out to 3.1709792e-15 **stroops** per
     // withdraw. That's even more precision than Microsoft Excel can handle!
     client.with_source_account(&u1).init(
-        &u2,               // our `Child` account
-        &id,               // our token contract id
-        &bigint!(&env, 1), // 1 stroops == 0.0000001 units allowance for the year
-        &1,                // 1 withdraw per second
+        &u2, // our `Child` account
+        &id, // our token contract id
+        &1,  // 1 stroops == 0.0000001 units allowance for the year
+        &1,  // 1 withdraw per second
     );
 
     // Again, there's no need for an assertion here, since this invocation
