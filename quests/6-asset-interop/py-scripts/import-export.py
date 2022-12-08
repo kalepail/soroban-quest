@@ -4,7 +4,7 @@ from stellar_sdk import Network, Keypair, TransactionBuilder
 from stellar_sdk import xdr as stellar_xdr
 from stellar_sdk.soroban import SorobanServer
 from stellar_sdk.soroban.soroban_rpc import TransactionStatus
-from stellar_sdk.soroban_types import InvokerSignature, BigInt, Int64
+from stellar_sdk.soroban_types import InvokerSignature, Int128, Int64
 
 secret = <SOURCE_ACCOUNT_SECRET>
 rpc_server_url = "<futurenet-horizon-url/soroban/rpc>"
@@ -25,7 +25,7 @@ tx = (
         method="import",  # or 'export'
         parameters=[
             InvokerSignature(),  # Invoker
-            BigInt(0),  # Nonce
+            Int128(0),  # Nonce
             Int64(1_000 * 10**7)  # amount, 1,000 tokens
         ],
         source=kp.public_key,
