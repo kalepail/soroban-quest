@@ -10,7 +10,7 @@ secret = <SOURCE_ACCOUNT_SECRET>
 rpc_server_url = "<futurenet-horizon-url/soroban/rpc>"
 network_passphrase = "Test SDF Future Network ; October 2022"
 
-contract_id = "71c670db8b9d9dd3fa17d83bd98e4a9814f926121972774bd419fa402fe01dc7" # Native XLM token contract id
+contract_id = "d93f5c7bb0ebc4a9c8f727c5cebc4e41194d38257e1d0d910356b43bfc528813" # Native XLM token contract id
 
 kp = Keypair.from_secret(secret)
 

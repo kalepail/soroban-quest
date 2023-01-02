@@ -5,7 +5,9 @@ use soroban_sdk::{contractimpl, AccountId, Bytes, BytesN, Env};
 /// allowing us to use that contract's types and client in this contract.
 mod storage_contract {
     // We do this inside a `mod{}` block to avoid collisions between type names
-    soroban_sdk::contractimport!(file = "./soroban_auth_store_contract.wasm");
+    soroban_sdk::contractimport!(
+        file = "./soroban_auth_store_contract.wasm"
+    );
 }
 
 /// We define a `trait` which can be used to create shared behavior between

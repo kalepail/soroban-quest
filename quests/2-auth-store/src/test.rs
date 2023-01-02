@@ -77,7 +77,9 @@ fn test_store_value_too_short() {
     // For our `u1` account, we attempt to store `Bytes(0, 7)` using the
     // contract's `put()` function. We stop there, since we're just expecting
     // the contract to panic with the argument that's too short.
-    client.with_source_account(&u1).put(&bytes![&env, 0x007]);
+    client
+        .with_source_account(&u1)
+        .put(&bytes![&env, 0x007]);
 }
 
 /// For the next few tests, we are going to test our DataStore contract's

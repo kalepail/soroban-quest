@@ -34,7 +34,7 @@ impl DataStoreContract {
 
         // We then use `env.data().set()` to store the value that was passed,
         // associating it with the contract invoker's AccountId.
-        env.data().set(key, value);
+        env.storage().set(key, value);
 
         Ok(()) // return ok if function call succeeded
     }
@@ -47,7 +47,7 @@ impl DataStoreContract {
         // Hmm. Interesting. This function doesn't enforce an `AccountId` type
         // of invoker. I guess this function *could* be invoked by another
         // contract. I wonder if that will be useful at some point? ;-)
-        env.data()
+        env.storage()
             .get(owner)
             .unwrap_or_else(|| Ok(bytes!(&env))) // This uses `unwrap_or_else` and closure which only evaluates Bytes(0) when necessary.
             .unwrap()
@@ -56,7 +56,7 @@ impl DataStoreContract {
     // !!!
     // TODO Make sure someone implements and uncomments this 👇 function before Q2 goes live or everyone will Nesho it
     // !!!
-    
+
     // /// The `get_self()` function works similarly to `get()`, except `owner` is
     // /// omitted. The AccountId to retrieve associated data for is supplied using
     // /// a call to `env.invoker()`. Again we don't allow cross-contract
@@ -70,7 +70,7 @@ impl DataStoreContract {
     //         }
     //     };
     //     Ok(env
-    //         .data()
+    //         .storage()
     //         .get(key)
     //         .unwrap_or_else(|| Ok(bytes!(&env)))
     //         .unwrap())
