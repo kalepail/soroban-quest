@@ -15,7 +15,7 @@ today you're going to be *writing* some actual Rust in your contract!
 conform to the specifications listed below. You must also deploy that contract,
 and then make the necessary invocations for each of the custom types. Finally,
 you must invoke the `verify` function of our verification contract
-`40d12b03a08f5dde4e0068aa752fa65eddf905e82a18f522efe350e0cd268b8a` so we can
+`422d1c0091a0528e3630fb5301389da530c40be4ce2eb8fcadf426a3d53627d3` so we can
 double-check your custom type definitions.**
 
 ## Table of Contents <!-- omit in toc -->
