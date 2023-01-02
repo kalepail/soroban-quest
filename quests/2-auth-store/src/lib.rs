@@ -32,7 +32,7 @@ impl DataStoreContract {
             panic_with_error!(&env, ContractError::InputValueTooShort)
         }
 
-        // We then use `env.data().set()` to store the value that was passed,
+        // We then use `env.storage().set()` to store the value that was passed,
         // associating it with the contract invoker's AccountId.
         env.storage().set(key, value);
 
@@ -40,7 +40,7 @@ impl DataStoreContract {
     }
 
     /// The `get()` function takes an `owner` parameter, accepting an AccountId
-    /// object for it. We then use `env.data().get()` to retrieve the value
+    /// object for it. We then use `env.storage().get()` to retrieve the value
     /// which has been associated with the supplied AccountId. If there is no
     /// data associated, return Bytes of length 0.
     pub fn get(env: Env, owner: AccountId) -> Bytes {
@@ -54,7 +54,7 @@ impl DataStoreContract {
     }
 
     // !!!
-    // TODO Make sure someone implements and uncomments this 👇 function before Q2 goes live or everyone will Nesho it
+    // TODO Let's make sure someone uncomments this 👇 function before Q2 goes live or everyone will Nesho it
     // !!!
 
     // /// The `get_self()` function works similarly to `get()`, except `owner` is
