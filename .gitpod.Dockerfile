@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full:2022-12-30-17-11-09
+FROM gitpod/workspace-full:2023-01-16-03-31-28
 LABEL version="1.1.15"
 
 RUN mkdir -p ~/.local/bin
@@ -21,6 +21,11 @@ RUN git clone https://github.com/tyvdh/soroban-quest--pioneer.git ~/.local/_tmp/
 ENV RUSTC_WRAPPER=sccache
 ENV SCCACHE_CACHE_SIZE=5G
 ENV SCCACHE_DIR=/workspace/.sccache
+
+# https://github.com/gitpod-io/workspace-images/issues/933#issuecomment-1272616892
+RUN rustup self uninstall -y
+RUN rm -rf .rustup
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 RUN rustup install stable
 RUN rustup target add --toolchain stable wasm32-unknown-unknown
